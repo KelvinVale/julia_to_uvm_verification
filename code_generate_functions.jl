@@ -526,7 +526,7 @@ gen_sequences_config_line(vip_name, tabs) = """$(tabs)uvm_config_wrapper::set(th
 
 test_gen() = (!run_test_gen) ? "" : begin
     output_file_setup("generated_files/test_top")
-    write_file("generated_files/test_top/test.sv", gen_test_base())
+    write_file("generated_files/test_top/tests.sv", gen_test_base())
 end
 
 gen_test_base() = """
