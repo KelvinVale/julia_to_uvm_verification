@@ -1,6 +1,6 @@
 reset_generated_files_folder = true
 
-vip_names = ["someone", "vip_test", "kelvin"]
+vip_names = ["vip_test", "kelvin"]
 
 stub_if_names = ["vip_test", "someone", "kelvin"]
 

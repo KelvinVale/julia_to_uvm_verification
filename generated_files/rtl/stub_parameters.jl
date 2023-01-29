@@ -1,0 +1,3 @@
+if_vector = Any[Any["vip_test", Any[["output reg", "1", "ready_o"], ["input     ", "1", "valid_i"], ["input     ", "[7:0]", "data_i"], ["output reg", "[7:0]", "data_o"]]], Any["kelvin", Any[["output reg", "1", "kelvin_ready_o"], ["input     ", "1", "kelvin_valid_i"], ["input     ", "[7:0]", "kelvin_data_i"], ["output reg", "[7:0]", "kelvin_data_o"]]]]
+stub_if_names = ["vip_test", "kelvin"]
+clk_rst_names = Any["clk", Any["rst_n", true]]

@@ -703,15 +703,17 @@ end
 
 get_interface_signals() = begin
     if_gather = []
+    item_to_deleat = []
     for x in stub_if_names
         try
             include(pwd()*"/generated_files/"*x*"/parameter_folder/"*x*"_parameters.jl")
             push!(if_gather,[x,update_signals_if_config(signals_if_config)])
         catch
             println("It was not possible to open the VIP '$(x)'")
-            delete_item(stub_if_names, x)
+            push!(item_to_deleat,x) 
         end
     end
+    setdiff!(stub_if_names, item_to_deleat)
     return if_gather
 end
 
