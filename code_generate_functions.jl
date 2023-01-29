@@ -1,21 +1,36 @@
-include("../pre_compile/pre_compile_functions.jl")
+open_file(dir) = open(str_aux->read(str_aux, String), dir)
+it_has_a_char(str_) = begin
+    cont = 1
+    for x in str_
+        if(Int(x) >= 33 && Int(x) <= 125) #Verify if the char is between A and z in ASCII.
+            return true, cont
+        end
+        cont += 1
+    end
+    return false, 0
+end
+output_file_setup(dir; reset_folder=true) = begin
+    if isdir(dir)
+        if (reset_folder)
+            rm(dir, recursive=true, force = true)
+            mkdir(dir)
+        end
+    else
+        mkdir(dir)
+    end
+end
+write_file(file_dir, txt_string) = begin
+    open(file_dir, "w") do io
+        write(io, txt_string)
+    end;
+end
+delete_item(vec, item) = setdiff!(vec, [item])
+function_dict = Dict()
+
 include("code_generate_parameters.jl")
 
 pkg_vec = ["sequence_lib", "sequencer", "packet", "agent", "monitor", "driver"]
 vec_classes = ["sequence_lib", "sequencer", "packet", "pkg", "if", "agent", "driver", "monitor"]
-
-#**********************
-# Funções usadas:
-#   .open_file(dir)
-#   .it_has_a_char(str_)
-#   .output_file_setup(dir; reset_folder=true)
-#   .write_file(file_dir, txt_string)
-#   .
-#   .
-#**********************
-
-delete_item(vec, item) = setdiff!(vec, [item])
-function_dict = Dict()
 
 
 gen_long_str(vec, tabs, line_gen_func) = begin
