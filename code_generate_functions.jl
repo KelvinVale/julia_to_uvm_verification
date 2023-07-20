@@ -29,9 +29,6 @@ function_dict = Dict()
 
 include("code_generate_parameters.jl")
 
-pkg_vec = ["sequence_lib", "sequencer", "packet", "agent", "monitor", "driver"]
-vec_classes = ["sequence_lib", "sequencer", "packet", "pkg", "if", "agent", "driver", "monitor"]
-
 
 gen_long_str(vec, tabs, line_gen_func) = begin
     str_aux = ""
@@ -765,6 +762,7 @@ vip_files_gen() = (!run_vip_gen) ? "" : begin
     output_file_setup("generated_files"; reset_folder=reset_generated_files_folder)
 
     for vip_name in vip_names
+        include("./global_vectors.jl")
         include("VIP_parameters/"*vip_name*"_parameters.jl")
 
         function_dict[uppercase("packet")] = [gen_packet_base, packet_vec]
@@ -782,6 +780,7 @@ vip_files_gen() = (!run_vip_gen) ? "" : begin
 
         gen_files(vec_classes, vip_name)
         write_file("generated_files/"*vip_name*"/parameter_folder/"*vip_name*"_parameters.jl", open_file("VIP_parameters/"*vip_name*"_parameters.jl"))
+        
     end
 end
 
